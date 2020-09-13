@@ -20,6 +20,7 @@ spec:
       - name: elastalert-sekolahlinux
         image: sekolahlinux/elastalert
         imagePullPolicy: IfNotPresent
+        #imagePullPolicy: Always
         volumeMounts:
         - name: elastalert-conf
           mountPath: "/elastalert/config"

@@ -5,34 +5,29 @@ metadata:
   namespace: default
 data:
   http_404.yaml: |
-        name: alert 404
+        name: alert 404 http code
         type: frequency
         index: filebeat-*
         num_events: 3
-
         timeframe:
           hours: 1
-
         filter:
         - term:
             response: "404"
-
         alert:
         - "slack"
         slack_webhook_url: "https://hooks.slack.com/services/XXXXX/XXXXXXX/XXXXXXXXXXXXXXXXX"
+
   http_200.yaml: |
-        name: alert 200
+        name: alert 200 http code
         type: frequency
         index: filebeat-*
         num_events: 3
-
         timeframe:
           hours: 1
-
         filter:
         - term:
             response: "200"
-
         alert:
         - "slack"
         slack_webhook_url: "https://hooks.slack.com/services/XXXXX/XXXXXXX/XXXXXXXXXXXXXXXXX"
