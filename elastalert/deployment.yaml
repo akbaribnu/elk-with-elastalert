@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: elastalert-sekolahlinux
+  namespace: default
+spec:
+  revisionHistoryLimit: 1
+  strategy:
+    type: RollingUpdate
+  replicas: 1
+  selector:
+    matchLabels:
+      app: elastalert
+  template:
+    metadata:
+      labels:
+        app: elastalert
+    spec:
+      containers:
+      - name: elastalert-sekolahlinux
+        image: sekolahlinux/elastalert
+        imagePullPolicy: IfNotPresent
+        volumeMounts:
+        - name: elastalert-conf
+          mountPath: "/elastalert/config"
+        - name: elastalert-rules
+          mountPath: "/elastalert/rules"
+        env:
+          - name: "CREATED_BY"
+            value: "SEKOLAHLINUX-AKBAR"
+      volumes:
+      - name: elastalert-conf
+        configMap:
+          name: elastalert-conf
+      - name: elastalert-rules
+        configMap:
+          name: elastalert-rules
